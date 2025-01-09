@@ -20,7 +20,6 @@ def reverse(head: Node) -> Node | None:
 
 
 def reverse_half(head: Node, x: list[int]) -> Node | None:
-
     x[0] += 1
     if head.next is None or head is None:
         return head
@@ -36,17 +35,19 @@ def reverse_half(head: Node, x: list[int]) -> Node | None:
 
     return head
 
+
 def arrays_of_indices(A: list[int]) -> list[list[int]]:
     hist = [0] * len(A)
     for i in range(len(A)):
         hist[A[i]] += 1
 
-    main_arr = []
+    main_arr = [[] for _ in range(len(hist))]
+
     for i in range(len(A)):
-        if hist[i] > 0:
-            main_arr.append([0]*hist[i])
-    for i in range(len(A)-1, -1, -1):
-        main_arr[A[i]][hist[A[i]]-1].append(i)
+        main_arr[A[i]].append(i)
         hist[A[i]] -= 1
     return main_arr
 
+
+l = [2, 3, 5, 5, 2, 2, 1, 3]
+print(arrays_of_indices(l))
