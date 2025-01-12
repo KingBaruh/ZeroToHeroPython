@@ -69,5 +69,4 @@ def product_except_self(nums: list[int]) -> list[int]:
         else:
             # Normal case, compute product except self
             result.append(multi // num)  # Use integer division
-
     return result
