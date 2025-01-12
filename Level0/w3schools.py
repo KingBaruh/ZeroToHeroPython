@@ -43,3 +43,31 @@ def isCover(string: str, cover: str) -> bool:
         hist[ord(cover[i])] += 1
         c_hist[ord(cover[i])] += 1
     start, end, latest_good_index = 0, 1, 10
+
+
+def product_except_self(nums: list[int]) -> list[int]:
+    multi = 1
+    zero_count = 0
+    result = []
+
+    # Compute the total product of non-zero elements and count zeroes
+    for num in nums:
+        if num == 0:
+            zero_count += 1
+        else:
+            multi *= num
+
+    # If more than one zero exists, the result is all zeroes
+    if zero_count > 1:
+        return [0] * len(nums)
+
+    # Build the result
+    for num in nums:
+        if zero_count == 1:
+            # If there's exactly one zero, only the position of zero gets the product
+            result.append(multi if num == 0 else 0)
+        else:
+            # Normal case, compute product except self
+            result.append(multi // num)  # Use integer division
+
+    return result

@@ -52,6 +52,7 @@ def arrays_of_indices(A: list[int]) -> list[list[int]]:
     return main_arr
 
 
+
 l = [2, 3, 5, 5, 2, 2, 1, 3]
 print(arrays_of_indices(l))
 
