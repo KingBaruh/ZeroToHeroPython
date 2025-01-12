@@ -1,7 +1,12 @@
+from dataclasses import dataclass
+
+from Level0.w3schools import Node
+
+
+@dataclass
 class Node:
-    def __init__(self, value):
-        self.value = value
-        self.next = None
+    val: int
+    next: Node
 
 
 def reverse(head: Node) -> Node | None:
