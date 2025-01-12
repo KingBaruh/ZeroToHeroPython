@@ -1,12 +1,10 @@
 from dataclasses import dataclass
 
 
-
 @dataclass
 class Node:
     val: int
     next: 'Node' = None  # Use a forward reference for next
-
 
 
 def reverse(head: Node) -> Node | None:
@@ -56,3 +54,4 @@ def arrays_of_indices(A: list[int]) -> list[list[int]]:
 
 l = [2, 3, 5, 5, 2, 2, 1, 3]
 print(arrays_of_indices(l))
+
