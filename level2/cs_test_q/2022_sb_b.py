@@ -1,12 +1,12 @@
 from dataclasses import dataclass
 
-from Level0.w3schools import Node
 
 
 @dataclass
 class Node:
     val: int
-    next: Node
+    next: 'Node' = None  # Use a forward reference for next
+
 
 
 def reverse(head: Node) -> Node | None:
