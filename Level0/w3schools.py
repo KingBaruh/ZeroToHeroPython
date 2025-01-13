@@ -70,3 +70,8 @@ def product_except_self(nums: list[int]) -> list[int]:
             # Normal case, compute product except self
             result.append(multi // num)  # Use integer division
     return result
+
+
+def create_zero_matrix(n, m):
+    return [[0 for _ in range(m)] for _ in range(n)]
+
