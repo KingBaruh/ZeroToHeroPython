@@ -100,7 +100,9 @@ def find_string(matrix, target):
         hist[char] -= 1
     return True
 
-
+#########################################
+# Question 6 - do not delete this comment
+#########################################
 def max_sum_row_index(A, x):
 
     max_overall = float('-inf')
