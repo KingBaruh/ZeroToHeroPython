@@ -1,8 +1,8 @@
 #########################################
 # Question 1.a - do not delete this comment
 #########################################
-def fourbonacci_rec(n):
-    if n <= 0:
+def fourbonacci(n):
+    if n == 0:
         return 0
     elif n == 1:
         return 1
@@ -10,16 +10,15 @@ def fourbonacci_rec(n):
         return 2
     elif n == 3:
         return 3
-    return fourbonacci_rec(n - 1) + fourbonacci_rec(n - 2) + fourbonacci_rec(n - 3) + fourbonacci_rec(n - 4)
+    return (fourbonacci(n - 1) + fourbonacci(n - 2)
+            + fourbonacci(n - 3) + fourbonacci(n - 4))
 
 
 #########################################
 # Question 1.b - do not delete this comment
 #########################################
 def k_bonacci(n, k):
-    if n <= 0:
-        return 0
-    elif 0 < n < k:
+    if 0 <= n < k:
         return n
     sum_n_step = 0
     for i in range(1, k + 1):
@@ -49,7 +48,8 @@ def tower_of_hanoi(n, source, target, mid):
 #########################################
 
 def find_missing_sorted(a, b):
-    low, high = 0, len(a)
+
+    low, high = 0, len(b)-1
 
     while low < high:
         mid = (low + high) // 2
@@ -69,16 +69,17 @@ def find_missing_sorted(a, b):
 def closest(a, x):
     low, high = 0, len(a) - 1
 
-    while low < high:
+    while high - low != 1:  # Continue until low and high are adjacent
         mid = (low + high) // 2
         if a[mid] == x:
             return mid
         if a[mid] < x:
-            low = mid
+            low = mid   # Move low up
         else:
-            high = mid
+            high = mid  # Move high down
 
-    if abs(x - a[low]) < abs(x - a[high]):
+    # After the loop, compare the closest between a[low] and a[high]
+    if abs(x - a[low]) <= abs(x - a[high]):
         return low
     return high
 
@@ -103,6 +104,8 @@ def find_string(matrix, target):
 #########################################
 # Question 6 - do not delete this comment
 #########################################
+
+
 def max_sum_row_index(A, x):
 
     max_overall = float('-inf')
