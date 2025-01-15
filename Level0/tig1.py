@@ -99,3 +99,26 @@ def find_string(matrix, target):
             return False
         hist[char] -= 1
     return True
+
+
+def max_sum_row_index(A, x):
+
+    max_overall = float('-inf')
+    best_row_index = -1
+
+    for row_index, row in enumerate(A):
+        current_sum = 0
+
+        for i in range(x):
+            current_sum += row[i]
+        max_in_row = current_sum
+
+        for i in range(x, len(row)):
+            current_sum = current_sum + row[i] - row[i - x]
+            max_in_row = max(max_in_row, current_sum)
+
+        if max_in_row > max_overall:
+            max_overall = max_in_row
+            best_row_index = row_index
+
+    return best_row_index
