@@ -47,6 +47,46 @@ def removeDuplicates(head):
 
     return head
 
+#########################################
+# Question 3 - do not delete this comment
+#########################################
+
+def getScores1(courses):
+
+    student_scores = {}
+
+    for course, scores in courses.items():
+        for student, score in scores.items():
+
+            if student not in student_scores:
+                student_scores[student] = []
+            student_scores[student].append(score)
+
+    for student, scores in student_scores.items():
+        average = sum(scores) / len(scores)
+        student_scores[student] = average
+
+    return student_scores
+
+
+def getScores2(courses):
+
+    student_scores = {}
+
+    for course, scores in courses.items():
+        for student, score in scores.items():
+
+            if student not in student_scores:
+                student_scores[student] = {}
+            student_scores[student][course] = score
+
+    for student, courses in student_scores.items():
+        average = sum(courses.values()) / len(courses)
+        student_scores[student] = average
+
+    return student_scores
+
+
 courses = {
     "Calclas 1" : {
         "Aviv" : 100
@@ -64,3 +104,4 @@ courses = {
         "Alice" : 78
     }
 }
+
