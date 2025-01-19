@@ -3,12 +3,12 @@ from dataclasses import dataclass
 
 @dataclass
 class Node:
-    value: int
+    value: int = 0
     next: 'Node' = None
 
 
 #########################################
-# Question 1 - do not delete this comment
+# Question 0 - do not delete this comment
 #########################################
 
 
@@ -29,23 +29,40 @@ def hasCycle(head):
 
 
 #########################################
-# Question 2 - do not delete this comment
+# Question 1 - do not delete this comment
 #########################################
 
 
 def removeDuplicates(head):
-    if head is None or head.next is None:
-        return head
-
-    current = head
-
-    while current and current.next:
-        if current.value == current.next.value:
-            current.next = current.next.next
-
-        current = current.next
-
+    cur = head
+    while cur and cur.next:
+        if cur.next.val == cur.next.val:
+            cur.next = cur.next.next
+        else
+            cur = cur.next
     return head
+
+
+#########################################
+# Question 2 - do not delete this comment
+#########################################
+
+def mergeTwoLists(list1, list2):
+    output = cur = Node(0)
+
+    while list1 and list2:
+        if list1.val <= list2.val:
+            cur.next = list1
+            list1 = list1.next
+        else:
+            cur.next = list2
+            list2 = list2.next
+        cur = cur.next
+
+    cur.next = list1 if list1 else list2
+
+    return output.next
+
 
 #########################################
 # Question 3 - do not delete this comment
