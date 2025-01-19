@@ -62,10 +62,21 @@ def mergeTwoLists(list1, list2):
     cur.next = list1 if list1 else list2
 
     return output.next
-
-
 #########################################
 # Question 3 - do not delete this comment
+#########################################
+def twoSum(nums, x):
+    seen = {}
+
+    for i, number in enumerate(nums):
+        if x - number in seen:
+            return seen[x - number], i
+        seen[number] = i
+
+    return None
+
+#########################################
+# Question 4 - do not delete this comment
 #########################################
 
 def getScores1(courses):
