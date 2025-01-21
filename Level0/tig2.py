@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Node:
-    value: int = 0
+    value: int
     next: 'Node' = None
 
 
@@ -178,15 +178,3 @@ def fix_list(head):
 
     return current_head
 
-def print_something(m):
-    for r in m:
-        for i in r:
-            print(i)
-            break
-
-    for r in m:
-        print(r)
-        break
-
-M = [[1, 2, 3, 4], [5, 6, 7, 8]]
-print_something(M)
