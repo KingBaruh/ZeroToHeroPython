@@ -38,7 +38,7 @@ def removeDuplicates(head):
     while cur and cur.next:
         if cur.next.val == cur.next.val:
             cur.next = cur.next.next
-        else
+        else:
             cur = cur.next
     return head
 
@@ -48,6 +48,22 @@ def removeDuplicates(head):
 #########################################
 
 def mergeTwoLists(list1, list2):
+    # Base cases: if either list is None, return the other list
+    if list1 is None:
+        return list2
+    if list2 is None:
+        return list1
+
+    # Choose the smaller head node and recursively merge the rest
+    if list1.value <= list2.value:
+        list1.next = mergeTwoLists(list1.next, list2)
+        return list1
+    else:
+        list2.next = mergeTwoLists(list1, list2.next)
+        return list2
+
+
+def mergeTwoLists2(list1, list2):
     output = cur = Node(0)
 
     while list1 and list2:
@@ -117,20 +133,60 @@ def getScores2(courses):
 
 courses = {
     "Calclas 1" : {
-        "Aviv" : 100
-        "Ben" : 67
+        "Aviv" : 100,
+        "Ben" : 67,
         "Alice" : 51
-    }
+    },
     "Discrete Math": {
-        "Aviv" : 10
-        "Ben" : 63
+        "Aviv" : 10,
+        "Ben" : 63,
         "Alice" : 60
-    }
+    },
     "Linear Algebra":  {
-        "Aviv" : 73
-        "Ben" : 35
+        "Aviv" : 73,
+        "Ben" : 35,
         "Alice" : 78
     }
 }
 
+def fix_list(head):
 
+    # Base case: If the list is empty or has only one node, it is already sorted
+    if not head or not head.next:
+        return head
+
+    temp_node = None
+    current_head = head
+
+    # If the current node is greater than the next node, swap them
+    if head.value > head.next.value:
+        temp_node = head.next
+        head.next = temp_node.next
+        temp_node.next = head
+        current_head = temp_node
+
+    # Recursive call to fix the rest of the list
+    fixed_tail = fix_list(current_head.next)
+    current_head.next = fixed_tail
+
+    # After recursion, check again if the current node is out of order if so swap
+    if current_head.next and current_head.value > current_head.next.value:
+        temp_node = current_head.next
+        current_head.next = temp_node.next
+        temp_node.next = current_head
+        return temp_node
+
+    return current_head
+
+def print_something(m):
+    for r in m:
+        for i in r:
+            print(i)
+            break
+
+    for r in m:
+        print(r)
+        break
+
+M = [[1, 2, 3, 4], [5, 6, 7, 8]]
+print_something(M)
