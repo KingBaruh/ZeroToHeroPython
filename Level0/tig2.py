@@ -178,3 +178,18 @@ def fix_list(head):
 
     return current_head
 
+def above_tail_average(head):
+
+    if not head:
+        return None
+    if not head.next:
+        return head.value , 1 , head
+
+    sum_nums , n , tail_list = above_tail_average(head.next)
+
+    if head.value < sum_nums/n:
+        return sum_nums , n , tail_list
+
+    head.next = tail_list
+
+    return sum_nums+head.value , n+1 , tail_list
