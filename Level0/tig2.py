@@ -191,5 +191,15 @@ def above_tail_average(head):
         return sum_nums , n , tail_list
 
     head.next = tail_list
+    return sum_nums + head.value , n+1 , head
 
-    return sum_nums+head.value , n+1 , tail_list
+node = Node(8)
+node.next = Node(6)
+node.next.next = Node(1)
+node.next.next.next = Node(3)
+node.next.next.next.next = Node(2)
+node.next.next.next.next.next = Node(5)
+node.next.next.next.next.next.next = Node(1)
+
+tup = above_tail_average(node)
+print(tup)
