@@ -203,3 +203,4 @@ node.next.next.next.next.next.next = Node(1)
 
 tup = above_tail_average(node)
 print(tup)
+
