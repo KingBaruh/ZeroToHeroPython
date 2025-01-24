@@ -36,7 +36,7 @@ def hasCycle(head):
 def removeDuplicates(head):
     cur = head
     while cur and cur.next:
-        if cur.next.val == cur.next.val:
+        if cur.value == cur.next.value:
             cur.next = cur.next.next
         else:
             cur = cur.next
