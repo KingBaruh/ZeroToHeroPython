@@ -10,7 +10,7 @@ class Node:
 
 def isBalanced(root):
     if not root:
-        return True, 0
+        return True, -1
 
     balanced, left_height = isBalanced(root.left)
     if balanced is False:
@@ -23,7 +23,7 @@ def isBalanced(root):
     if abs(left_height - right_height) > 1:
         return False, 0
 
-    return max(left_height, right_height) + 1, True
+    return True, max(left_height, right_height) + 1
 
 
 def hasPathSum(root, targetSum):
