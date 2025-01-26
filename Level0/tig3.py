@@ -37,3 +37,38 @@ def hasPathSum(root, targetSum):
     right_sum = hasPathSum(root.right, targetSum - root.value)
 
     return left_sum or right_sum
+
+
+def f(root: Node, i: int, x: int):
+    if not root:
+        return 0
+    if x - i == 0:
+        return (1 + f(root.left, i, x - 1)
+                + f(root.right, i, x + 1))
+
+    return (f(root.left, i, x - 1)
+            + f(root.right, i, x + 1))
+
+
+def findNode(root, k):
+    if not root:
+        return None, 0
+    if not root.left and not root.right:
+        if root.value == k:
+            return None, True
+
+    result, left = findNode(root.left, k)
+
+    if result:
+        return result, True
+
+    result, right = findNode(root.right, k)
+
+    if result:
+        return result, True
+
+    if left and right:
+        return root, True
+
+    return None, False
+
