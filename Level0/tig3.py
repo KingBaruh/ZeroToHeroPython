@@ -72,3 +72,51 @@ def findNode(root, k):
 
     return None, False
 
+
+def permute(nums):
+    if len(nums) == 1:
+        return [nums[:]]
+
+    res = []
+    for i in range(len(nums)):
+        cur = nums[i]
+        remaining = nums[:i] + nums[i+1:]
+        for perm in permute(remaining):
+            res.append([cur] + perm)
+
+    return res
+
+
+def wordSearch(board, word):
+    if len(board) == 1 and len(board[0]) == 1:
+        return board[0][0] == word
+
+    for i in range(len(board)):
+        for j in range(len(board[0])):
+            if backtrack((i, j), 0, board, word):
+                return True
+
+    return False
+
+
+def backtrack(pos, index, board, word):
+    i, j = pos
+
+    if index == len(word):
+        return True
+
+    if board[i][j] != word[index]:
+        return False
+
+    char = board[i][j]
+    board[i][j] = "#"
+
+    for i_off, j_off in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+        r, c = i + i_off, j + j_off
+
+        if 0 <= r < len(board) and 0 <= c < len(board[0]):
+            if backtrack((r, c), index + 1, board, word):
+                return True
+
+    board[i][j] = char
+    return False
