@@ -73,6 +73,35 @@ def findNode(root, k):
     return None, False
 
 
+def isValidBST_Wrong(root):
+    if not root:
+        return True
+    if not root.left and not root.right:
+        return True
+
+    if root.left and root.left.value >= root.value:
+        return False
+    if root.right and root.right.value <= root.value:
+        return False
+
+    return isValidBST_Wrong(root.left) and isValidBST_Wrong(root.right)
+
+
+def isValidBST(root):
+    return valid(root, float("-inf"), float("inf"))
+
+
+def valid(node, minimum, maximum):
+    if not node:
+        return True
+
+    if not (minimum < node.value < maximum):
+        return False
+
+    return (valid(node.left, minimum, node.value)
+            and valid(node.right, node.value, maximum))
+
+
 def permute(nums):
     if len(nums) == 1:
         return [nums[:]]
@@ -80,7 +109,7 @@ def permute(nums):
     res = []
     for i in range(len(nums)):
         cur = nums[i]
-        remaining = nums[:i] + nums[i+1:]
+        remaining = nums[:i] + nums[i + 1:]
         for perm in permute(remaining):
             res.append([cur] + perm)
 
