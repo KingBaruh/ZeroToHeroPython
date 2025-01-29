@@ -52,10 +52,10 @@ def f(root: Node, i: int, x: int):
 
 def findNode(root, k):
     if not root:
-        return None, 0
+        return None, False
+
     if not root.left and not root.right:
-        if root.value == k:
-            return None, True
+        return None, root.value == k
 
     result, left = findNode(root.left, k)
 
@@ -70,7 +70,7 @@ def findNode(root, k):
     if left and right:
         return root, True
 
-    return None, False
+    return None, left or right
 
 
 def isValidBST_Wrong(root):

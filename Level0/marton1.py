@@ -63,12 +63,12 @@ x = 10
 lst = [x + y for y in range(3)]
 print(lst)
 
-matrix = [[1, 2], [3, 4]]
-copy = matrix[:]
-copy[0] = [5, 6]
-copy[1][0] = 7
-print(matrix)
-print(copy)
+list1 = [[1, 2], [3, 4]]
+list2 = list1[:]
+list2[0] = [5, 6]
+list2[1][0] = 7
+print(list1)
+print(list2)
 
 x = 5
 
@@ -188,7 +188,7 @@ def find_avg(head, target):
     if not head:
         return False
 
-    left, right = 0, len(head.lst)
+    left, right = 0, len(head.lst) - 1
 
     while left < right:
         cur = head
@@ -210,3 +210,31 @@ def find_avg(head, target):
 
 # Time Complexity: O(n*log(n))
 # Space Complexity: O(1)
+
+
+def find_cycle(arr):
+
+    # Finding cycle length
+    width = 1
+    while width < len(arr) and arr[width] != arr[0]:
+        width += 1
+
+    # Must be a multiple of width or less than width
+    if len(arr) % width != 0 or len(arr) == width:
+        return False
+
+    j = width
+
+    # Compare segment by segment
+    while j < len(arr):
+        for k in range(width):
+            if arr[j + k] != arr[k]:
+                return False
+        j += width
+
+    return True  # If all segments match, return True
+
+
+
+
+
