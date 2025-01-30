@@ -6,24 +6,61 @@ import heapq
 class Graph:
     def __init__(self):
         self.graph = {}
+        self.weight = {}
 
     def addVertex(self, node):
         if node not in self.graph:
             self.graph[node] = []
 
-    def addEdge(self, from_ver, to_ver):
+    def addEdge(self, from_ver, to_ver, weight=1):
         if from_ver in self.graph and to_ver in self.graph:
             self.graph[from_ver].append(to_ver)
+            self.weight[(from_ver, to_ver)] = weight
 
+    def getWeight(self, from_ver, to_ver):
+        return self.weight[(from_ver, to_ver)]
+##
+#    def visualize(self):
+#       G = nx.DiGraph()
+#        for node in self.graph:
+#            for neighbor in self.graph[node]:
+#                G.add_edge(node, neighbor)
+#
+#        plt.figure(figsize=(10, 6))
+#        pos = nx.spring_layout(G)
+#        nx.draw(G, pos, with_labels=True, node_color='lightblue', edge_color='gray', node_size=2000, font_size=10)
+#        plt.show()
+##
     def visualize(self):
         G = nx.DiGraph()
+
+        # Add all nodes (even if they have no edges)
+        for node in self.graph:
+            G.add_node(node)
+
+        # Add edges with weights
         for node in self.graph:
             for neighbor in self.graph[node]:
-                G.add_edge(node, neighbor)
+                G.add_edge(node, neighbor, weight=self.weight[(node, neighbor)])
 
-        plt.figure(figsize=(10, 6))
-        pos = nx.spring_layout(G)
-        nx.draw(G, pos, with_labels=True, node_color='lightblue', edge_color='gray', node_size=2000, font_size=10)
+        plt.figure(figsize=(12, 8))
+
+        # Use spring_layout with k=0.5 for better spacing
+        pos = nx.spring_layout(G, k=0.5, seed=42)
+
+        # Draw the graph
+        nx.draw(G, pos, with_labels=True, node_color='lightblue', edge_color='gray',
+                node_size=2000, font_size=12, font_weight="bold", arrowsize=15)
+
+        # Draw edge labels (weights) above the edges
+        edge_labels = {(u, v): self.weight[(u, v)] for u, v in G.edges()}
+
+        # Offset labels slightly above edges
+        label_pos = {k: (v[0], v[1] + 0.05) for k, v in pos.items()}
+
+        nx.draw_networkx_edge_labels(G, label_pos, edge_labels=edge_labels,
+                                     font_size=12, font_color='red', font_weight="bold")
+
         plt.show()
 
     def BFS(self, start):
@@ -83,8 +120,12 @@ class Graph:
         while pq:
             u = heapq.heappop(pq)
             for v in self.graph[u]:
-                pass  #  TO DO
+                if dist[u] + self.weight[(u, v)] < dist[v]:
+                    dist[v] = dist[u] + self.weight[(u, v)]
+                    pred[v] = u
+                    # add change pryority to v to dist[v]
 
+        return pred, dist
 
 
 # Example Usage
