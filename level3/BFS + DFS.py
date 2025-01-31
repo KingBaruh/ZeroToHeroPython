@@ -118,7 +118,7 @@ class Graph:
             heapq.heappush(pq, (u, dist[u]))
 
         while pq:
-            u = heapq.heappop(pq)
+            u, dist_u = heapq.heappop(pq)
             for v in self.graph[u]:
                 if dist[u] + self.weight[(u, v)] < dist[v]:
                     dist[v] = dist[u] + self.weight[(u, v)]
@@ -133,15 +133,18 @@ g = Graph()
 for i in range(1, 11):
     g.addVertex(str(i))
 
-edges = [("1", "2"), ("1", "3"), ("2", "4"), ("2", "5"),
+edges = [("1", "2", 3), ("1", "3", 6), ("2", "4", 7), ("2", "5"),
          ("3", "6"), ("3", "7"), ("4", "8"), ("5", "8"),
          ("6", "10"), ("7", "10")]
 
-for frm, to in edges:
-    g.addEdge(frm, to)
+for tup in edges:
+    if len(tup) == 2:
+        g.addEdge(tup[0], tup[1])
+    elif len(tup) == 3:
+        g.addEdge(tup[0], tup[1], tup[2])
 
-g.visualize()
-print(g.DFS("1"))
+#g.visualize()
+print(g.Dijkstra("1"))
 
 
 

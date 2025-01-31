@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 def stringonacci_loop(n):
     a, b = 'a', 'b'
     if n == 1:
@@ -12,22 +14,6 @@ def stringonacci_loop(n):
 #########################################
 # שאלות מעקב
 #########################################
-
-
-from dataclasses import dataclass
-
-
-@dataclass
-class Container:
-    name: str = 'name'
-
-
-c1 = Container()
-c1.name.upper()
-c2 = Container()
-
-
-#print(c2.name)
 
 
 def func1(x, lst=[]):
@@ -143,6 +129,33 @@ def tree_height(root):
     return max(left_height, right_height)  # bug
 
 
+def q_pop(q):
+    if q is None:
+        return None, None
+    new_q = q.next
+    q.next = None
+    return new_q, q
+
+
+def compere_to_number(x, y):
+    if type(x) is float and type(y) is float:
+        return x + y == 0.3
+    else:
+        return False
+
+
+numbers = [1, 2, 3, 4, 5]
+
+
+def duplicate_list(lst):
+    for num in lst:
+        lst.append(num)
+
+
+duplicate_list(numbers)
+print(numbers)
+
+
 #########################################
 # שאלות פתוחות
 #########################################
@@ -166,6 +179,7 @@ def longestOnes(nums, k):
         max_width = max(max_width, cur_width)
 
     return max_width
+
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)
@@ -208,12 +222,12 @@ def find_avg(head, target):
 
     return False
 
+
 # Time Complexity: O(n*log(n))
 # Space Complexity: O(1)
 
 
 def find_cycle(arr):
-
     # Finding cycle length
     width = 1
     while width < len(arr) and arr[width] != arr[0]:
@@ -233,8 +247,3 @@ def find_cycle(arr):
         j += width
 
     return True  # If all segments match, return True
-
-
-
-
-
