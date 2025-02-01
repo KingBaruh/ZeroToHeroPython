@@ -143,17 +143,27 @@ def compere_to_number(x, y):
     else:
         return False
 
+def update(st):
+    st[:] = "a"
 
-numbers = [1, 2, 3, 4, 5]
+def del_num(lst, idx):
+     lst[:] = lst[:idx] + lst[idx+1:]
+
+
+def extract_carts(product, lst=[]):
+     lst.append(product)
+     return lst
+betty_cart = extract_carts("Laptop")
+yoni_cart = extract_carts("iPhone")
+
+print(betty_cart)
+print(yoni_cart)
 
 
 def duplicate_list(lst):
     for num in lst:
         lst.append(num)
 
-
-duplicate_list(numbers)
-print(numbers)
 
 
 #########################################
@@ -247,3 +257,50 @@ def find_cycle(arr):
         j += width
 
     return True  # If all segments match, return True
+
+
+def minCoveringIndex(A):
+    dict = {}
+    max = 0
+    for i in range(len(A)):
+        if dict.get(A[i],0) == 0:
+            dict[A[i]] = 1
+            max = i
+    return max
+
+
+@dataclass
+class Node:
+    number: int
+    next: 'Node' = None
+
+
+def newSum(list1, list2):
+
+    if not list1 or not list2:
+        return None, 0
+
+    res_tail, carry = newSum(list1.next, list2.next)
+
+    current = list1.number + list2.number + carry
+    new_node = Node(current % 10)
+    new_node.next = res_tail
+    return new_node, current / 10
+
+def sort_even_odd(arr):
+
+    left, right = 0, len(arr) - 1
+
+    while left < right:
+        while left < right and arr[left] % 2 == 0:
+            left += 1
+        while left < right and arr[right] % 2 != 0:
+            right -= 1
+        if left < right:
+            arr[left], arr[right] = arr[right], arr[left]
+            left += 1
+            right -= 1
+
+arr = [3, 1, 2, 4, 7, 6, 8, 5]
+sort_even_odd(arr)
+print(arr)
