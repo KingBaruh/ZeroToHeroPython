@@ -16,9 +16,23 @@ def stringonacci_loop(n):
 #########################################
 
 
-def func1(x, lst=[]):
+@dataclass
+class Node:
+    value: int
+    next: 'Node' = None
+
+node1 = Node(13)
+node1.next.y = [123]
+node2 = node(11)
+node1.next = node2
+print(node1.next.y)
+
+def func(x, lst=[]):
     lst.append(x)
     return lst
+
+print(func(1))
+print(func(2))
 
 
 d = {}
@@ -57,15 +71,11 @@ print(list1)
 print(list2)
 
 x = 5
-
-
 def foo():
-    global x
     print(x)
     x = 10
-
-
 foo()
+
 print(x)
 
 s = "abcdefgh"
@@ -76,9 +86,11 @@ print(s[3::-2][::-1])
 # שאלות באג בקוד
 #########################################
 
+def func(n)
+    return n * func(n - 1) if n != 0 else 0
 
-def func10(lst):
-    for num in lst:  # bug
+def func(lst):
+    for num in lst:
         num *= 2
     return lst
 
@@ -145,6 +157,9 @@ def compere_to_number(x, y):
 
 def update(st):
     st[:] = "a"
+
+st = "abc"
+update(st)
 
 def del_num(lst, idx):
      lst[:] = lst[:idx] + lst[idx+1:]
