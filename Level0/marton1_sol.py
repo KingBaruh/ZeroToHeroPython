@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 #########################################
-# Question 1
+# Test 1 - Question 1
 #########################################
 
 def longestOnes(nums, k):
@@ -10,7 +10,7 @@ def longestOnes(nums, k):
 
 
 #########################################
-# Question 2
+# Test 1 - Question 2
 #########################################
 
 @dataclass
@@ -24,7 +24,7 @@ def find_avg(head, target):
 
 
 #########################################
-# Question 3
+# Test 2 - Question 1
 #########################################
 
 
@@ -39,7 +39,7 @@ def newSum(list1, list2):
 
 
 #########################################
-# Question 4
+# Test 2 - Question 2
 #########################################
 
 def sort_even_odd(arr):
@@ -47,7 +47,7 @@ def sort_even_odd(arr):
 
 
 #########################################
-# Question 5
+# Test 2 - Question 3
 #########################################
 
 def wordSearch(board, word):
