@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 def stringonacci_loop(n):
     a, b = 'a', 'b'
     if n == 1:
@@ -22,18 +23,19 @@ class Node:
     next: 'Node' = None
 
 node1 = Node(13)
-node1.next.y = [123]
-node2 = node(11)
+node1.y = [123]
+node2 = Node(11)
 node1.next = node2
 print(node1.next.y)
+
 
 def func(x, lst=[]):
     lst.append(x)
     return lst
 
+
 print(func(1))
 print(func(2))
-
 
 d = {}
 lst = [1, 2, 3]
@@ -71,9 +73,14 @@ print(list1)
 print(list2)
 
 x = 5
+
+
 def foo():
+    global x
     print(x)
     x = 10
+
+
 foo()
 
 print(x)
@@ -86,8 +93,9 @@ print(s[3::-2][::-1])
 # שאלות באג בקוד
 #########################################
 
-def func(n)
-    return n * func(n - 1) if n != 0 else 0
+def func6(n):
+    return n * func6(n - 1) if n != 0 else 0
+
 
 def func(lst):
     for num in lst:
@@ -155,19 +163,24 @@ def compere_to_number(x, y):
     else:
         return False
 
+
 def update(st):
     st[:] = "a"
+
 
 st = "abc"
 update(st)
 
+
 def del_num(lst, idx):
-     lst[:] = lst[:idx] + lst[idx+1:]
+    lst[:] = lst[:idx] + lst[idx + 1:]
 
 
 def extract_carts(product, lst=[]):
-     lst.append(product)
-     return lst
+    lst.append(product)
+    return lst
+
+
 betty_cart = extract_carts("Laptop")
 yoni_cart = extract_carts("iPhone")
 
@@ -178,7 +191,6 @@ print(yoni_cart)
 def duplicate_list(lst):
     for num in lst:
         lst.append(num)
-
 
 
 #########################################
@@ -278,7 +290,7 @@ def minCoveringIndex(A):
     dict = {}
     max = 0
     for i in range(len(A)):
-        if dict.get(A[i],0) == 0:
+        if dict.get(A[i], 0) == 0:
             dict[A[i]] = 1
             max = i
     return max
@@ -291,7 +303,6 @@ class Node:
 
 
 def newSum(list1, list2):
-
     if not list1 or not list2:
         return None, 0
 
@@ -302,8 +313,8 @@ def newSum(list1, list2):
     new_node.next = res_tail
     return new_node, current / 10
 
-def sort_even_odd(arr):
 
+def sort_even_odd(arr):
     left, right = 0, len(arr) - 1
 
     while left < right:
@@ -315,6 +326,7 @@ def sort_even_odd(arr):
             arr[left], arr[right] = arr[right], arr[left]
             left += 1
             right -= 1
+
 
 arr = [3, 1, 2, 4, 7, 6, 8, 5]
 sort_even_odd(arr)
