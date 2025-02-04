@@ -137,3 +137,13 @@ def wordSearch(board, word):
             if backtrack((i,j),0,board,word):
                 return True
     return False
+
+
+def duplicate_list(lst):
+    for i in range(len(lst)):
+        lst.append(lst[i])
+
+
+list1 = [1,2,3]
+duplicate_list(list1)
+print(list1)
