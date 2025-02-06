@@ -356,22 +356,8 @@ above_avg_dataclass(students_dataclass)
 
 # %% q8
 
-from dataclasses import dataclass
+for x in enumerate(range(2)):
+    print(x)
 
-
-@dataclass
-class Client:
-    products: list
-
-
-lst = ["Milk"]
-
-c1 = Client(lst)
-c1.products.append("Coffee")
-print(lst)
-
-print("Yes, that means that...")
-print("lst id is", id(lst))
-print("And also, c1.products id is", id(c1.products))
 
 
