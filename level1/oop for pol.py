@@ -29,8 +29,7 @@ def func(data: dict):
     for key in my_dict.keys():
         print(my_dict[key]["count"])
 
-
-# part 2
+    # part 2
 
     print(f'average time={avg:.5f}')
 
@@ -101,7 +100,7 @@ class Cage:
 
     def add_animals(self, *args):
         for animal in args:
-            if len(self.my_cage) <= 5:
+            if len(self.my_cage) < 5:
                 self.my_cage.append(animal)
                 self.num_animals += 1
 
@@ -120,7 +119,7 @@ class Cage:
         res = []
         for animal in self.my_cage:
             if animal.color == color:
-                res.append([str(animal)])
+                res.append(str(animal))
         return res
 
 
@@ -135,7 +134,7 @@ class Zoo:
     def animals_by_color(self, color):
         res = []
         for cage in self.cages:
-            res += cage.animals_by_color(color)
+            res.append(cage.animals_by_color(color))
 
         return res
 
@@ -169,3 +168,6 @@ if __name__ == '__main__':
     print(z.number_of_legs())
 
     print(z.animals_by_color('black'))
+
+
+

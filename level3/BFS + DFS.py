@@ -143,7 +143,7 @@ for tup in edges:
     elif len(tup) == 3:
         g.addEdge(tup[0], tup[1], tup[2])
 
-#g.visualize()
+g.visualize()
 print(g.Dijkstra("1"))
 
 
