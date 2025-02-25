@@ -40,17 +40,10 @@ def print_list(node):
     print("None")
 
 # %% Question 3
-
-
-def getA_sum(A):
+def climb_combinations(n):
     pass
 
-
-def subarray_sum(A_sum, pos1, pos2):
-    pass
-
-
-def find_max_sum(A_sum, m, n):
+def tomer_climb_combinations(n, steps):
     pass
 
 # %% Question 4
@@ -91,4 +84,17 @@ def newSum(list1, list2):
 
 
 def subsets(nums):
+    pass
+# %% Question 7
+
+
+def getA_sum(A):
+    pass
+
+
+def subarray_sum(A_sum, pos1, pos2):
+    pass
+
+
+def find_max_sum(A_sum, m, n):
     pass
