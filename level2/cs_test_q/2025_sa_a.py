@@ -46,6 +46,12 @@ def compare_linked_lists(node1, node2):
     if not node1 and not node2:
         return 0
 
+    if node1 and not node2:
+        return 1
+
+    if not node1 and node2:
+        return -1
+
     result_tail = compare_linked_lists(node1.next, node2.next)
     if result_tail == 0:
         if node1.value > node2.value:
@@ -54,8 +60,8 @@ def compare_linked_lists(node1, node2):
             return -1
         else:
             return 0
-    else:
-        return result_tail
+
+    return result_tail
 
 
 def bubble_sort_lists(lst):
