@@ -1,4 +1,3 @@
-
 # %% Question 1
 def hanoi_n(n, _from, to, via):
     pass
@@ -43,4 +42,53 @@ def print_list(node):
 # %% Question 3
 
 
+def getA_sum(A):
+    pass
 
+
+def subarray_sum(A_sum, pos1, pos2):
+    pass
+
+
+def find_max_sum(A_sum, m, n):
+    pass
+
+# %% Question 4
+from dataclasses import dataclass
+
+
+@dataclass
+class Node:
+    value: str
+    next: 'Node' = None
+
+def s_push(s, node):
+    pass
+
+def s_top(s):
+    pass
+
+def s_pop(s):
+    pass
+
+def isValid(parentheses):
+    pass
+
+# %% Question 5
+from dataclasses import dataclass
+
+
+@dataclass
+class Node:
+    number: int
+    next: 'Node' = None
+
+
+def newSum(list1, list2):
+    pass
+
+# %% Question 6
+
+
+def subsets(nums):
+    pass
