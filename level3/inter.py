@@ -33,3 +33,52 @@ class LRUCache:
 
     def put(self, key: int, value: int) -> None:
         pass
+
+# Definition for singly-linked list
+class ListNode:
+     def __init__(self, val=0, next = None):
+         self.val = val
+         self.next = next
+
+def sortList(head):
+    pass
+
+
+def removeElement(nums: list[int], val: int) -> int:
+    nums_size = len(nums)
+    i = nums_size - 1
+
+    while i >= 0:
+        if nums[i] == val:
+            if i != nums_size - 1:
+                nums[i] = nums[nums_size - 1]
+            nums_size -= 1
+        i -= 1
+
+    return nums_size
+
+def removeElement2(nums: list[int], val: int) -> int:
+    if len(nums) == 0:
+        return 0
+
+    i, j = 0, len(nums) - 1
+    while i <= j:
+        if nums[i] == val:
+            while nums[j] == val and i < j:
+                j -= 1
+
+            temp = nums[j]
+            nums[j] = nums[i]
+            nums[i] = temp
+
+        i += 1
+
+    i = 0
+    while i < len(nums):
+        if nums[i] == val:
+            return i
+        i += 1
+
+    return i
+
+
