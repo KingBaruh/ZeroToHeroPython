@@ -115,4 +115,127 @@ def helper(name, files_and_folders, result_d):
             helper(name, folder_files, result_d)
 
 
+def mergeSort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left_arr = mergeSort(arr[:mid])
+    right_arr = mergeSort(arr[mid:])
+    return merge(left_arr, right_arr)
 
+
+def merge(left_arr, right_arr):
+    sorted_arr = []
+    i = 0
+    j = 0
+
+    while i < len(left_arr) and j < len(right_arr):
+        if left_arr[i] < right_arr[j]:
+            sorted_arr.append(left_arr[i])
+            i += 1
+        else:
+            sorted_arr.append(right_arr[j])
+            j += 1
+
+    if i < len(left_arr):
+        sorted_arr.extend(left_arr[i:])
+
+    if j < len(right_arr):
+        sorted_arr.extend(right_arr[j:])
+
+    return sorted_arr
+
+def foods_calories(foods):
+    return {}
+
+def daily_calories(calories_file, days_lst):
+    dic = foods_calories(calories_file)
+    result_lst = []
+
+    for day in days_lst:
+        day_calories = 0
+        file = open(day, mode='r')
+        lines = file.readlines()
+        for line in lines:
+            pair = line.strip().split('*') #['4', 'Apple']
+            value_of_product = dic.get(pair[1], 100)
+            day_calories += value_of_product * int(pair[0])
+
+        result_lst.append(day_calories)
+        file.close()
+
+    return result_lst
+
+
+def subset_sums(nums):
+    if len(nums) == 0:
+        return [0]
+
+    else:
+        result_lst = []
+        #[1,2,3,4]
+        # nums[:-1] = [1,2,3]
+        lst2 = subset_sums(nums[:-1])
+
+        result_lst = result_lst + lst2
+
+        for item in lst2:
+            item += nums[-1]
+            result_lst.append(item)
+
+        return result_lst
+
+class Client:
+    def __init__(self, name, salary, balance):
+        if type(name) is not str:
+            print('Name Error')
+            self.name = 'error'
+        else:
+            self.name = name
+        self.salary = salary
+        self.balance = balance
+
+    def salary_raise(self, amount):
+        self.salary += amount
+        self.balance += 0.3 * amount
+
+    def __repr__(self):
+        return f'Name: {self.name}, Salary: {self.salary}, Balance:{self.balance}'
+
+class Bank:
+    def __init__(self, name):
+        self.name = name
+        self.client_lst = []
+        self.balance = 0
+
+    def add_client(self, client):
+        self.client_lst.append(client)
+        self.balance += client.balance
+
+    def __repr__(self):
+        output = f'Name: {self.name}, Balance: {self.balance}\nBank Clients:\n'
+        for client in self.client_lst:
+            output += f'{client}\n'
+            output += f'Client balance percent: {int(100 * client.balance/self.balance)}\n'
+
+        return output
+
+def mul_crit(client, alpha, beta):
+    return alpha + beta * 2000 / client.salary
+
+def max_salary(bank):
+    r_max = float('-inf')
+    for client in bank.client_lst:
+        r_max = max(client.salary,r_max)
+    return r_max
+
+def approved_clients(bank):
+    lst = sorted(bank.client_lst, key=lambda client: mul_crit(client, max_salary(bank) - client.salary, bank.balance))
+    return lst[:len(lst)//2]
+
+bank = Bank('Python Bank')
+yarin = Client('Yarin', 10000, 200000000)
+jonathan = Client('Jonathan', 5000, 100000000)
+bank.add_client(yarin)
+bank.add_client(jonathan)
+print(bank)
