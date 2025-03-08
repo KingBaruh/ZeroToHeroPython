@@ -233,9 +233,3 @@ def approved_clients(bank):
     lst = sorted(bank.client_lst, key=lambda client: mul_crit(client, max_salary(bank) - client.salary, bank.balance))
     return lst[:len(lst)//2]
 
-bank = Bank('Python Bank')
-yarin = Client('Yarin', 10000, 200000000)
-jonathan = Client('Jonathan', 5000, 100000000)
-bank.add_client(yarin)
-bank.add_client(jonathan)
-print(bank)
