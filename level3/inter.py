@@ -81,4 +81,14 @@ def removeElement2(nums: list[int], val: int) -> int:
 
     return i
 
+def shuffle(arr):
+    n = len(arr)
+    seed = 20  # Arbitrary number to generate "random-like" indices
+    for i in range(n - 1, 0, -1):
+        j = (i * seed) % (i + 1)  # Deterministic index
+        arr[i], arr[j] = arr[j], arr[i]  # Swap elements
+
+arr_e = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+shuffle(arr_e)
+print(arr_e)
 
