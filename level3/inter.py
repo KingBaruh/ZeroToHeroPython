@@ -97,32 +97,26 @@ def changePassword(s: str, k: int) -> str:
 
 
 def MinOpp(s1, s2):
-    res = 0
     n = len(s1)
     m = len(s2)
-    i = 0
-    j = 0
-    del_count = 0
+    dp = [[0] * (m + 1) for _ in range(n + 1)]
 
-    while i < n and j < m:
-        if s1[i] == s2[j]:
-            i += 1
-            j += 1
-        else:
-            if i + 1 < n and s1[i + 1] == s2[j]:
-                i += 1
-                del_count += 1
+    for j in range(m):
+        dp[n][j] = m - j
+
+    for i in range(n):
+        dp[i][m] = n - i
+
+    for i in range(n - 1, -1, -1):
+        for j in range(m - 1, -1, -1):
+            if s1[i] == s2[j]:
+                dp[i][j] = dp[i + 1][j + 1]
             else:
-                i += 1
-                j += 1
+                dp[i][j] = 1 + min(dp[i + 1][j + 1], dp[i][j + 1], dp[i + 1][j])
 
-            res += 1
+    return dp[0][0]
 
-    res += abs(n - m)
-    return res
-
-
-print(MinOpp("abcdef", "acdef"))
+print(MinOpp("abcdzef", "abcdef"))
 
 
 
