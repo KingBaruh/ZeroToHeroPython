@@ -35,5 +35,44 @@ print(fracture_patients)
 print()
 
 # task 3.1
+# Define a function to categorize scan cost
+def categorize_scan_cost(cost):
+    if cost > 1000:
+        return "High"
+    elif 500 <= cost <= 1000:
+        return "Medium"
+    else:
+        return "Low"
+
+# Apply function to create new column
+df["Scan_Cost_Category"] = df["Scan_Cost"].apply(categorize_scan_cost)
+
+# Display the updated DataFrame
+print(df)
+
+# task 3.2
+avg_scan_cost_by_gender = df.groupby("Gender")["Scan_Cost"].mean()
+print(avg_scan_cost_by_gender)
+
+# bonus task
+import matplotlib.pyplot as plt
+
+# Calculate the average scan cost per scan type
+avg_scan_cost_by_type = df.groupby("Scan_Type")["Scan_Cost"].mean()
+
+# Plot the bar chart
+plt.figure(figsize=(8, 5))
+avg_scan_cost_by_type.plot(kind="bar", color=["blue", "green", "orange"])
+
+# Customize the plot
+plt.xlabel("Scan Type")
+plt.ylabel("Average Scan Cost")
+plt.title("Average Scan Cost by Scan Type")
+plt.xticks(rotation=0)
+plt.grid(axis="y", linestyle="--", alpha=0.7)
+
+# Show the plot
+plt.show()
+
 
 
